@@ -24,8 +24,8 @@
     <artifactId>ballerina-utils-connector</artifactId>
     <packaging>pom</packaging>
     <version>0.990.3</version>
-    <name>Ballerina - Utils Native Implementation</name>
-    <url>https://ballerina.io/</url>
+    <name>Ballerina Utils - Native Implementation</name>
+    <url>https://ballerina.io</url>
 
     <repositories>
         <!-- WSO2 released artifact repository -->
