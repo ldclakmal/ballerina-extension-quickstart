@@ -35,7 +35,7 @@ then
     fi
 fi
 
-cp dependencies/$module_name-module-$version.jar $ballerina_lib_location
+cp dependencies/ballerina-$module_name-module-$version.jar $ballerina_lib_location
 
 if [ $? -ne 0 ]
 then
