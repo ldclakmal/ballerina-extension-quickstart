@@ -25,7 +25,7 @@ fi
 ballerina_lib_location=$ballerina_home/bre/lib/
 ballerina_balo_location=$ballerina_home/lib/repo/
 version=${project.version}
-module_name=ballerina-utils
+module_name=utils
 
 if [ ! -e "$ballerina_lib_location/$module_name-module-$version.jar" ]
 then
@@ -36,7 +36,7 @@ then
    fi
 fi
 
-rm $ballerina_lib_location/$module_name-module-$version.jar
+rm $ballerina_lib_location/ballerina-$module_name-module-$version.jar
 
 if [ -e "$ballerina_lib_location/$module_name-module-$version.jar" ]; then
     echo "Error occurred while deleting dependencies from $ballerina_lib_location"

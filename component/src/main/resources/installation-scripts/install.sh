@@ -25,7 +25,7 @@ fi
 ballerina_lib_location=$ballerina_home/bre/lib/
 ballerina_balo_location=$ballerina_home/lib/repo/
 version=${project.version}
-module_name=ballerina-utils
+module_name=utils
 
 if [ -e "$ballerina_lib_location/$module_name-module-$version.jar" ]
 then
@@ -44,7 +44,7 @@ then
     then rm -r temp
     fi
     echo "You can install the module by manually copying"
-    echo 1. "dependencies/$module_name-module-$version.jar to $ballerina_lib_location"
+    echo 1. "dependencies/ballerina-$module_name-module-$version.jar to $ballerina_lib_location"
     echo 2. "Contents of balo directory to $ballerina_balo_location".
     exit 2
 fi
