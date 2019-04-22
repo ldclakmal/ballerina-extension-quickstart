@@ -19,12 +19,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>org.wso2.ballerinalang</groupId>
-        <artifactId>ballerina-utils</artifactId>
+        <artifactId>ballerina-utils-connector</artifactId>
         <version>0.990.3</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>ballerina-utils-component</artifactId>
+    <artifactId>ballerina-utils</artifactId>
     <packaging>jar</packaging>
     <name>Ballerina - Utils Component</name>
     <url>http://ballerinalang.org</url>
@@ -180,10 +180,10 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>ballerina-utils-component-${project.version}</finalName>
+                            <finalName>${project.artifactId}-module-${project.version}</finalName>
                             <artifactSet>
                                 <includes>
-                                    <include>org.ballerinalang:ballerina-utils-component</include>
+                                    <include>org.ballerinalang:ballerina-utils</include>
                                 </includes>
                             </artifactSet>
                             <transformers>

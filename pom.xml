@@ -21,7 +21,7 @@
 
     <groupId>org.wso2.ballerinalang</groupId>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>ballerina-utils</artifactId>
+    <artifactId>ballerina-utils-connector</artifactId>
     <packaging>pom</packaging>
     <version>0.990.3</version>
     <name>Ballerina - Utils Native Implementation</name>

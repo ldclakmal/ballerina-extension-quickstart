@@ -21,7 +21,7 @@ under the License.
 
 <suite name="ballerina-natives-test-suite">
 
-    <test name="ballerina-utils-sort-tests">
+    <test name="ballerina-utils-tests">
         <classes>
             <class name="org.wso2.ballerinalang.utils.MaxTest"/>
         </classes>
