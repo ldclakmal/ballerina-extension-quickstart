@@ -27,7 +27,7 @@ ballerina_balo_location=$ballerina_home/lib/repo/
 version=${project.version}
 module_name=ballerina-utils
 
-if [ ! -e "$ballerina_lib_location/wso2-$module_name-module-$version.jar" ]
+if [ ! -e "$ballerina_lib_location/$module_name-module-$version.jar" ]
 then
    if [ ! -e "$ballerina_balo_location/wso2/$module_name/0.0.0/$module_name.zip" ]
    then
@@ -36,11 +36,11 @@ then
    fi
 fi
 
-rm $ballerina_lib_location/wso2-$module_name-module-$version.jar
+rm $ballerina_lib_location/$module_name-module-$version.jar
 
-if [ -e "$ballerina_lib_location/wso2-$module_name-module-$version.jar" ]; then
+if [ -e "$ballerina_lib_location/$module_name-module-$version.jar" ]; then
     echo "Error occurred while deleting dependencies from $ballerina_lib_location"
-    echo "Please manually delete $ballerina_lib_location/wso2-$module_name-module-$version.jar and $ballerina_balo_location/wso2/$module_name/0.0.0/$module_name.zip"
+    echo "Please manually delete $ballerina_lib_location/$module_name-module-$version.jar and $ballerina_balo_location/wso2/$module_name/0.0.0/$module_name.zip"
     exit 1
 fi
 

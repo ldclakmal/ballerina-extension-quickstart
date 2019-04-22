@@ -27,15 +27,15 @@ ballerina_balo_location=$ballerina_home/lib/repo/
 version=${project.version}
 module_name=ballerina-utils
 
-if [ -e "$ballerina_lib_location/wso2-$module_name-module-$version.jar" ]
+if [ -e "$ballerina_lib_location/$module_name-module-$version.jar" ]
 then
     if [ ! -e temp ]
     then mkdir temp
-    cp $ballerina_lib_location/wso2-$module_name-module-$version.jar temp/
+    cp $ballerina_lib_location/$module_name-module-$version.jar temp/
     fi
 fi
 
-cp dependencies/wso2-$module_name-module-$version.jar $ballerina_lib_location
+cp dependencies/$module_name-module-$version.jar $ballerina_lib_location
 
 if [ $? -ne 0 ]
 then
@@ -44,7 +44,7 @@ then
     then rm -r temp
     fi
     echo "You can install the module by manually copying"
-    echo 1. "dependencies/wso2-$module_name-module-$version.jar to $ballerina_lib_location"
+    echo 1. "dependencies/$module_name-module-$version.jar to $ballerina_lib_location"
     echo 2. "Contents of balo directory to $ballerina_balo_location".
     exit 2
 fi
@@ -53,17 +53,17 @@ cp -r balo/* $ballerina_balo_location/
 
 if [ $? -ne 0 ]; then
     echo "Error occurred while copying $module_name balo to $ballerina_balo_location. Reverting the changes"
-    if [ -e temp/wso2-$module_name-module-$version.jar ]
-    then cp temp/wso2-$module_name-module-$version.jar $ballerina_lib_location/
+    if [ -e temp/$module_name-module-$version.jar ]
+    then cp temp/$module_name-module-$version.jar $ballerina_lib_location/
     rm -r temp
-    else rm $ballerina_lib_location/wso2-$module_name-module-$version.jar
+    else rm $ballerina_lib_location/$module_name-module-$version.jar
     fi
     echo "You can install the module by manually copying"
-    echo 1. "dependencies/wso2-$module_name-module-$version.jar to $ballerina_lib_location"
+    echo 1. "dependencies/$module_name-module-$version.jar to $ballerina_lib_location"
     echo 2. "Contents of balo directory to $ballerina_balo_location"
     exit 3
 else
-    if [ -e "temp/wso2-$module_name-module-$version.jar" ]
+    if [ -e "temp/$module_name-module-$version.jar" ]
     then rm -r temp
     fi
     echo "Successfully installed Ballerina Utils module!"

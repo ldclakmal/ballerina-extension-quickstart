@@ -30,16 +30,16 @@ SET ballerina_balo_location=%ballerina_home%\lib\repo
 SET version=${project.version}
 SET module_name=ballerina-utils
 
-IF EXIST "%ballerina_lib_location%\wso2-%module_name%-module-%version%.jar" (
+IF EXIST "%ballerina_lib_location%\%module_name%-module-%version%.jar" (
     rem Backup if a jar already exists with the same name
     MKDIR temp
-	XCOPY "%ballerina_lib_location%\wso2-%module_name%-module-%version%.jar" "temp" /y
+	XCOPY "%ballerina_lib_location%\%module_name%-module-%version%.jar" "temp" /y
 )
 
-XCOPY ".\dependencies\wso2-%module_name%-module-%version%.jar" "%ballerina_lib_location%" /y
+XCOPY ".\dependencies\%module_name%-module-%version%.jar" "%ballerina_lib_location%" /y
 
 IF %ERRORLEVEL% GTR 0 (
-    ECHO An error occurred while copying .\dependencies\wso2-%module_name%-module-%version%.jar to %ballerina_lib_location%
+    ECHO An error occurred while copying .\dependencies\%module_name%-module-%version%.jar to %ballerina_lib_location%
 	ECHO Installation unsuccessful.
 	GOTO :FAILED
 )
@@ -51,11 +51,11 @@ IF NOT EXIST "%ballerina_balo_location%\wso2\%module_name%\0.0.0" (
 	IF ERRORLEVEL 1 (
 		ECHO An error occurred while copying .\balo\wso2\%module_name%\0.0.0\%module_name%.zip to %ballerina_balo_location%\wso2\%module_name%\0.0.0
 		ECHO Installation unsuccessful. Reverting changes.
-		IF EXIST "temp\wso2-%module_name%-module-%version%.jar" (
-			ECHO Copying backed-up wso2-%module_name%-module-%version%.jar to %ballerina_lib_location%
-			XCOPY "temp\wso2-%module_name%-module-%version%.jar" "%ballerina_lib_location%" /y
+		IF EXIST "temp\%module_name%-module-%version%.jar" (
+			ECHO Copying backed-up %module_name%-module-%version%.jar to %ballerina_lib_location%
+			XCOPY "temp\%module_name%-module-%version%.jar" "%ballerina_lib_location%" /y
 		) ELSE (
-			DEL "%ballerina_lib_location%\wso2-%module_name%-module-%version%.jar"
+			DEL "%ballerina_lib_location%\%module_name%-module-%version%.jar"
 		)
 		GOTO :FAILED
     )
@@ -67,11 +67,11 @@ XCOPY ".\balo\wso2\%module_name%\0.0.0\%module_name%.zip" "%ballerina_balo_locat
 IF %ERRORLEVEL% GTR 0 (
     ECHO An error occurred while copying .\balo\wso2\%module_name%\0.0.0\%module_name%.zip to %ballerina_balo_location%\wso2\%module_name%\0.0.0
     ECHO Installation unsuccessful. Reverting changes.
-    IF EXIST "temp\wso2-%module_name%-module-%version%.jar" (
-	    ECHO Copying backed-up wso2-%module_name%-module-%version%.jar to %ballerina_lib_location%
-	    XCOPY "temp\wso2-%module_name%-module-%version%.jar" "%ballerina_lib_location%" /y
+    IF EXIST "temp\%module_name%-module-%version%.jar" (
+	    ECHO Copying backed-up %module_name%-module-%version%.jar to %ballerina_lib_location%
+	    XCOPY "temp\%module_name%-module-%version%.jar" "%ballerina_lib_location%" /y
 	) ELSE (
-	    DEL "%ballerina_lib_location%\wso2-%module_name%-module-%version%.jar"
+	    DEL "%ballerina_lib_location%\%module_name%-module-%version%.jar"
 	)
 	GOTO :FAILED
 )
@@ -82,7 +82,7 @@ GOTO :END
 
 :FAILED
 ECHO You can manually install the module by copying
-ECHO 1. dependencies\wso2-%module_name%-module-%version%.jar to %ballerina_lib_location%
+ECHO 1. dependencies\%module_name%-module-%version%.jar to %ballerina_lib_location%
 ECHO 2. balo\wso2\%module_name%\0.0.0\%module_name%.zip to %ballerina_balo_location%\wso2\%module_name%\0.0.0
 
 :END

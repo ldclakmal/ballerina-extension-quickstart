@@ -25,17 +25,17 @@ SET ballerina_balo_location=%ballerina_home%\lib\repo\
 SET version=${project.version}
 SET module_name=ballerina-utils
 
-IF NOT EXIST "%ballerina_lib_location%\wso2-%module_name%-module-%version%.jar" (
+IF NOT EXIST "%ballerina_lib_location%\%module_name%-module-%version%.jar" (
     IF NOT EXIST "%ballerina_balo_location%\wso2\%module_name%\0.0.0\%module_name%.zip" (
 	   ECHO Ballerina Utils module is not installed!
 	   GOTO :END
 	)
 )
 
-IF EXIST "%ballerina_lib_location%\wso2-%module_name%-module-%version%.jar" (
-   DEL "%ballerina_lib_location%\wso2-%module_name%-module-%version%.jar"
-   IF EXIST "%ballerina_lib_location%\wso2-%module_name%-module-%version%.jar" (
-    ECHO An error occurred while deleting %ballerina_lib_location%wso2-%module_name%-module-%version%.jar
+IF EXIST "%ballerina_lib_location%\%module_name%-module-%version%.jar" (
+   DEL "%ballerina_lib_location%\%module_name%-module-%version%.jar"
+   IF EXIST "%ballerina_lib_location%\%module_name%-module-%version%.jar" (
+    ECHO An error occurred while deleting %ballerina_lib_location%%module_name%-module-%version%.jar
 	GOTO :FAILED_JAR_DELETION
    )
 )
@@ -53,7 +53,7 @@ ECHO Successfully uninstalled Ballerina Utils module!
 GOTO :END
 
 :FAILED_JAR_DELETION
-ECHO Un-installation is incomplete due to an error. Please manually delete %ballerina_lib_location%wso2-%module_name%-module-%version%.jar and %ballerina_balo_location%wso2\%module_name%\0.0.0\%module_name%.zip
+ECHO Un-installation is incomplete due to an error. Please manually delete %ballerina_lib_location%%module_name%-module-%version%.jar and %ballerina_balo_location%wso2\%module_name%\0.0.0\%module_name%.zip
 GOTO :END
 
 :FAILED_BALO_DELETION
