@@ -292,7 +292,7 @@
     <properties>
         <ballerina.version>0.990.3</ballerina.version>
         <testng.version>6.9.10</testng.version>
-        <mvn.processor.plugin.version>2.2.4</mvn.processor.plugin.version>
+        <mvn.processor.plugin.version>3.3.3</mvn.processor.plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <connectors.source.temp.dir>${basedir}/target/classes/META-INF/ballerina</connectors.source.temp.dir>
         <wso2.maven.compiler.source>1.8</wso2.maven.compiler.source>
