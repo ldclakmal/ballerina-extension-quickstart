@@ -3,4 +3,4 @@
 # + a - Number 1
 # + b - Number 2
 # + return - Max out of the number 1 and 2
-public extern function max(int a, int b) returns int;
+public function max(int a, int b) returns int = external;
