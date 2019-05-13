@@ -25,13 +25,13 @@ fi
 ballerina_lib_location=$ballerina_home/bre/lib/
 ballerina_balo_location=$ballerina_home/lib/repo/
 version=${project.version}
-module_name=utils
+module_name=extension
 
 if [ ! -e "$ballerina_lib_location/$module_name-module-$version.jar" ]
 then
    if [ ! -e "$ballerina_balo_location/wso2/$module_name/0.0.0/$module_name.zip" ]
    then
-   echo "Ballerina Utils module is not installed!"
+   echo "Ballerina-Extension module is not installed!"
    exit 0
    fi
 fi
@@ -51,5 +51,5 @@ if [ -e "$ballerina_balo_location/wso2/$module_name/0.0.0/$module_name.zip" ]; t
     echo "Please manually delete $ballerina_balo_location/wso2/$module_name/0.0.0 directory"
     exit 2
 else
-    echo "Successfully uninstalled Ballerina Utils module!"
+    echo "Successfully uninstalled Ballerina-Extension module!"
 fi

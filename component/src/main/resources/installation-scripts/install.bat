@@ -28,7 +28,7 @@ IF NOT EXIST "%ballerina_home%/bin/ballerina.bat" (
 SET ballerina_lib_location=%ballerina_home%\bre\lib
 SET ballerina_balo_location=%ballerina_home%\lib\repo
 SET version=${project.version}
-SET module_name=ballerina-utils
+SET module_name=extension
 
 IF EXIST "%ballerina_lib_location%\%module_name%-module-%version%.jar" (
     rem Backup if a jar already exists with the same name
@@ -77,7 +77,7 @@ IF %ERRORLEVEL% GTR 0 (
 )
 
 :SUCCESS
-ECHO Successfully installed Ballerina Utils module!
+ECHO Successfully installed Ballerina-Extension module!
 GOTO :END
 
 :FAILED

@@ -25,7 +25,7 @@ fi
 ballerina_lib_location=$ballerina_home/bre/lib/
 ballerina_balo_location=$ballerina_home/lib/repo/
 version=${project.version}
-module_name=utils
+module_name=extension
 
 if [ -e "$ballerina_lib_location/$module_name-module-$version.jar" ]
 then
@@ -66,5 +66,5 @@ else
     if [ -e "temp/$module_name-module-$version.jar" ]
     then rm -r temp
     fi
-    echo "Successfully installed Ballerina Utils module!"
+    echo "Successfully installed Ballerina-Extension module!"
 fi
