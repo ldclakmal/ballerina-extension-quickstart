@@ -15,7 +15,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.wso2.ballerinalang.utils;
+package org.ballerinalang.extension;
 
 import org.ballerinalang.launcher.util.BCompileUtil;
 import org.ballerinalang.launcher.util.BRunUtil;
@@ -26,33 +26,38 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 /**
- * Native function to test org.wso2.ballerina.utils:max.
+ * Native function to test org.ballerinalang.extension:max.
  */
 public class MaxTest {
 
-    private CompileResult result;
+    private CompileResult compileResult;
 
     @BeforeClass
     public void setup() {
-        result = BCompileUtil.compile("samples/max.bal");
+        String resourceRoot = Paths.get("src", "test", "resources").toAbsolutePath().toString();
+        Path sourceRoot = Paths.get(resourceRoot, "samples");
+        compileResult = BCompileUtil.compile(sourceRoot.resolve("max.bal").toString());
     }
 
     @Test(description = "Tests max util")
     public void testMax1() {
-        BValue[] results = BRunUtil.invoke(result, "testMax1");
+        BValue[] results = BRunUtil.invoke(compileResult, "testMax1");
         Assert.assertEquals(((BInteger) results[0]).intValue(), 2);
     }
 
     @Test(description = "Tests max util")
     public void testMax2() {
-        BValue[] results = BRunUtil.invoke(result, "testMax2");
+        BValue[] results = BRunUtil.invoke(compileResult, "testMax2");
         Assert.assertEquals(((BInteger) results[0]).intValue(), 10);
     }
 
     @Test(description = "Tests max util")
     public void testMax3() {
-        BValue[] results = BRunUtil.invoke(result, "testMax3");
+        BValue[] results = BRunUtil.invoke(compileResult, "testMax3");
         Assert.assertEquals(((BInteger) results[0]).intValue(), 2);
     }
 }

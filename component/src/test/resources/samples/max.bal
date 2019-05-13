@@ -15,19 +15,19 @@
 // under the License.
 
 import ballerina/io;
-import wso2/utils;
+import wso2/extension;
 
 function testMax1() returns int {
-    int max = utils:max(1, 2);
+    int max = extension:max(1, 2);
     return max;
 }
 
 function testMax2() returns int {
-    int max = utils:max(10, 2);
+    int max = extension:max(10, 2);
     return max;
 }
 
 function testMax3() returns int {
-    int max = utils:max(2, 2);
+    int max = extension:max(2, 2);
     return max;
 }

@@ -19,14 +19,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>org.wso2.ballerinalang</groupId>
-        <artifactId>ballerina-utils-connector</artifactId>
+        <artifactId>sample-ballerina-extension</artifactId>
         <version>0.991.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>ballerina-utils</artifactId>
+    <artifactId>ballerina-extension</artifactId>
     <packaging>jar</packaging>
-    <name>Ballerina Utils</name>
+    <name>Ballerina Extension</name>
     <url>https://ballerina.io</url>
 
     <dependencies>
@@ -54,6 +54,10 @@
             <groupId>org.ballerinalang</groupId>
             <artifactId>ballerina-io</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.ballerinalang</groupId>
+            <artifactId>ballerina-utils</artifactId>
+        </dependency>
         <!-- Following ballerina-binary-repo dependency is required to obtain balos -->
         <dependency>
             <groupId>org.ballerinalang</groupId>
@@ -79,6 +83,13 @@
             <type>zip</type>
             <classifier>ballerina-binary-repo</classifier>
         </dependency>
+        <dependency>
+            <groupId>org.ballerinalang</groupId>
+            <artifactId>ballerina-utils</artifactId>
+            <type>zip</type>
+            <classifier>ballerina-binary-repo</classifier>
+        </dependency>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -108,7 +119,7 @@
                         <processor>org.ballerinalang.codegen.BallerinaAnnotationProcessor</processor>
                     </processors>
                     <options>
-                        <nativeEntityProviderPackage>org.ballerinalang.utils.generated.providers</nativeEntityProviderPackage>
+                        <nativeEntityProviderPackage>org.ballerinalang.extension.generated.providers</nativeEntityProviderPackage>
                         <nativeEntityProviderClass>StandardNativeElementProvider</nativeEntityProviderClass>
                     </options>
                 </configuration>
@@ -183,7 +194,7 @@
                             <finalName>${project.artifactId}-module-${project.version}</finalName>
                             <artifactSet>
                                 <includes>
-                                    <include>org.ballerinalang:ballerina-utils</include>
+                                    <include>org.ballerinalang:wso2-extension</include>
                                 </includes>
                             </artifactSet>
                             <transformers>
@@ -374,7 +385,6 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <executions>
-                    <!-- Following execution generates balo for utils package -->
                     <execution>
                         <id>gen-balo</id>
                         <goals>
@@ -404,10 +414,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <executions>
-                    <!-- Since ballerina-utils balo is needed by tests, here it is copied to target/lib where other balos
-                    are copied to -->
                     <execution>
-                        <id>copy-ballerina-utils-balo</id>
                         <phase>compile</phase>
                         <goals>
                             <goal>copy-resources</goal>

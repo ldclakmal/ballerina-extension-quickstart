@@ -15,7 +15,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.wso2.ballerinalang.utils;
+package org.ballerinalang.extension;
 
 import org.ballerinalang.bre.Context;
 import org.ballerinalang.bre.bvm.BlockingNativeCallableUnit;
@@ -26,11 +26,11 @@ import org.ballerinalang.natives.annotations.BallerinaFunction;
 import org.ballerinalang.natives.annotations.ReturnType;
 
 /**
- * Native function org.wso2.ballerina.utils:max.
+ * Native function org.ballerinalang.extension:max.
  */
 @BallerinaFunction(
         orgName = "wso2",
-        packageName = "utils:0.0.0",
+        packageName = "extension:0.0.0",
         functionName = "max",
         args = {
                 @Argument(name = "a", type = TypeKind.INT),
