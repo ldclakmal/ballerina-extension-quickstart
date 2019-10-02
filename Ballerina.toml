@@ -1,0 +1,9 @@
+[project]
+org-name = "ldclakmal"
+version = "1.0.0"
+authors = ["Chanaka Lakmal"]
+keywords= ["sample", "extension", "quickstart"]
+repository= "https://github.com/ldclakmal/ballerina-extension-quickstart"
+license = ["Apache-2.0"]
+
+[dependencies]

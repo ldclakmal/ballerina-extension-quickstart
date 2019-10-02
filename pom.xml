@@ -1,34 +1,98 @@
-<!--
-  ~ Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
-  ~
-  ~ WSO2 Inc. licenses this file to you under the Apache License,
-  ~ Version 2.0 (the "License"); you may not use this file except
-  ~ in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~    http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing,
-  ~ software distributed under the License is distributed on an
-  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  ~ KIND, either express or implied.  See the License for the
-  ~ specific language governing permissions and limitations
-  ~ under the License.
-  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-    <groupId>org.wso2.ballerinalang</groupId>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>sample-ballerina-extension</artifactId>
+<modelVersion>4.0.0</modelVersion>
+    <groupId>lk.avix</groupId>
+    <artifactId>ballerina-extension-quickstart</artifactId>
     <packaging>pom</packaging>
-    <version>0.991.0</version>
-    <name>Sample Ballerina Extension</name>
-    <url>https://ballerina.io</url>
+    <version>1.0.0</version>
+    <name>Ballerina Extension QuickStart</name>
+
+    <url>https://ballerina.io/</url>
+
+    <modules>
+        <module>sample</module>
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>sample</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>wso2-release</id>
+            <build>
+                <plugins>
+                    <!-- We want to deploy the artifact to a staging location for perusal -->
+                    <plugin>
+                        <inherited>true</inherited>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <configuration>
+                            <updateReleaseInfo>true</updateReleaseInfo>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- We want to sign the artifact, the POM, and all attached artifacts -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>ballerina-build</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <executions>
+                            <execution>
+                                <id>ballerina-build</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>exec</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <executable>ballerina</executable>
+                            <arguments>
+                                <argument>compile</argument>
+                            </arguments>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <repositories>
-        <!-- WSO2 released artifact repository -->
         <repository>
             <id>wso2.releases</id>
             <name>WSO2 Releases Repository</name>
@@ -39,8 +103,6 @@
                 <checksumPolicy>ignore</checksumPolicy>
             </releases>
         </repository>
-
-        <!-- WSO2 Snapshot artifact repository -->
         <repository>
             <id>wso2.snapshots</id>
             <name>WSO2 Snapshot Repository</name>
@@ -53,7 +115,6 @@
                 <enabled>false</enabled>
             </releases>
         </repository>
-
         <repository>
             <id>wso2-nexus</id>
             <name>WSO2 internal Repository</name>
@@ -77,7 +138,6 @@
                 <checksumPolicy>ignore</checksumPolicy>
             </releases>
         </pluginRepository>
-
         <pluginRepository>
             <id>wso2.snapshots</id>
             <name>WSO2 Snapshot Repository</name>
@@ -90,7 +150,6 @@
                 <enabled>false</enabled>
             </releases>
         </pluginRepository>
-
         <pluginRepository>
             <id>wso2-nexus</id>
             <name>WSO2 internal Repository</name>
@@ -107,27 +166,12 @@
         <dependencies>
             <dependency>
                 <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-core</artifactId>
+                <artifactId>ballerina-lang</artifactId>
                 <version>${ballerina.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-builtin</artifactId>
-                <version>${ballerina.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-runtime-api</artifactId>
-                <version>${ballerina.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-logging</artifactId>
-                <version>${ballerina.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-log-api</artifactId>
+                <artifactId>ballerina-runtime</artifactId>
                 <version>${ballerina.version}</version>
             </dependency>
             <dependency>
@@ -135,61 +179,135 @@
                 <artifactId>ballerina-io</artifactId>
                 <version>${ballerina.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-utils</artifactId>
-                <version>${ballerina.version}</version>
-            </dependency>
-            <!-- Following ballerina-binary-repo dependency is required to obtain balos -->
-            <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-builtin</artifactId>
-                <version>${ballerina.version}</version>
-                <type>zip</type>
-                <classifier>ballerina-binary-repo</classifier>
-            </dependency>
-            <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-runtime-api</artifactId>
-                <version>${ballerina.version}</version>
-                <type>zip</type>
-                <classifier>ballerina-binary-repo</classifier>
-            </dependency>
-            <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-log-api</artifactId>
-                <version>${ballerina.version}</version>
-                <type>zip</type>
-                <classifier>ballerina-binary-repo</classifier>
-            </dependency>
-            <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-io</artifactId>
-                <type>zip</type>
-                <classifier>ballerina-binary-repo</classifier>
-                <version>${ballerina.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-utils</artifactId>
-                <version>${ballerina.version}</version>
-                <type>zip</type>
-                <classifier>ballerina-binary-repo</classifier>
-            </dependency>
-
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
                 <version>${testng.version}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.ballerinalang</groupId>
-                <artifactId>ballerina-launcher</artifactId>
-                <version>${ballerina.version}</version>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>${maven.wagon.ssh.version}</version>
+            </extension>
+        </extensions>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${maven.release.plugin.version}</version>
+                <configuration>
+                    <preparationGoals>clean install</preparationGoals>
+                    <autoVersionSubmodules>false</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>${maven.deploy.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <source>${wso2.maven.compiler.source}</source>
+                    <target>${wso2.maven.compiler.target}</target>
+                    <compilerArgument>-proc:none</compilerArgument>
+                </configuration>
+            </plugin>
+            <plugin><!-- Overridden from parent pom to exclude generated sources -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${maven.checkstyle.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <configLocation>
+                                https://raw.githubusercontent.com/wso2/code-quality-tools/master/checkstyle/checkstyle.xml
+                            </configLocation>
+                            <suppressionsLocation>
+                                https://raw.githubusercontent.com/wso2/code-quality-tools/master/checkstyle/suppressions.xml
+                            </suppressionsLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <!--Exclude generated sources-->
+                            <excludes>
+                                **/generated/**
+                            </excludes>
+                        </configuration>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- For ballerina annotation processing -->
+            <plugin>
+                <groupId>org.bsc.maven</groupId>
+                <artifactId>maven-processor-plugin</artifactId>
+                <version>${maven.processor.plugin.version}</version>
+                <configuration>
+                    <processors>
+                        <processor>org.ballerinalang.codegen.BallerinaAnnotationProcessor</processor>
+                    </processors>
+                    <options>
+                        <nativeEntityProviderPackage>org.ballerinalang.ftp.generated.providers</nativeEntityProviderPackage>
+                        <nativeEntityProviderClass>StandardNativeElementProvider</nativeEntityProviderClass>
+                    </options>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>process</id>
+                        <goals>
+                            <goal>process</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-remote-resources-plugin</artifactId>
+                <version>${maven.remote.resource.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven.shade.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
     <distributionManagement>
         <repository>
             <id>nexus-releases</id>
@@ -202,132 +320,30 @@
             <url>http://maven.wso2.org/nexus/content/repositories/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
-
-    <build>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh</artifactId>
-                <version>${maven.wagon.ssh.version}</version>
-            </extension>
-        </extensions>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>${maven.compiler.plugin.version}</version>
-                    <configuration>
-                        <source>${wso2.maven.compiler.source}</source>
-                        <target>${wso2.maven.compiler.target}</target>
-                        <compilerArgument>-proc:none</compilerArgument>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-release-plugin</artifactId>
-                    <version>${maven.release.plugin.version}</version>
-                    <configuration>
-                        <preparationGoals>clean install</preparationGoals>
-                        <autoVersionSubmodules>false</autoVersionSubmodules>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>${maven.deploy.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>${maven.dependency.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${maven.checkstyle.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.bsc.maven</groupId>
-                    <artifactId>maven-processor-plugin</artifactId>
-                    <version>${mvn.processor.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.ballerinalang</groupId>
-                    <artifactId>docerina-maven-plugin</artifactId>
-                    <version>${ballerina.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>${maven.surefire.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>findbugs-maven-plugin</artifactId>
-                    <version>${maven.findbugsplugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${maven.jacoco.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>properties-maven-plugin</artifactId>
-                    <version>${maven.properties.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-remote-resources-plugin</artifactId>
-                    <version>${maven.remote.resources.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>${maven.exec.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven.resources.plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-shade-plugin</artifactId>
-                    <version>${maven.shade.plugin.version}</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
     <properties>
-        <ballerina.version>0.991.0</ballerina.version>
-        <testng.version>6.14.3</testng.version>
-        <mvn.processor.plugin.version>3.3.3</mvn.processor.plugin.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <connectors.source.temp.dir>${basedir}/target/classes/META-INF/ballerina</connectors.source.temp.dir>
+        <ballerina.version>1.0.0</ballerina.version>
+        <slf4j.version>1.7.22</slf4j.version>
+        <maven.findbugsplugin.version.exclude>findbugs-exclude.xml</maven.findbugsplugin.version.exclude>
+        <testng.version>6.9.4</testng.version>
+
         <wso2.maven.compiler.source>1.8</wso2.maven.compiler.source>
         <wso2.maven.compiler.target>1.8</wso2.maven.compiler.target>
-
-        <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
-        <maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
-        <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
-        <maven.wagon.ssh.version>3.3.2</maven.wagon.ssh.version>
+        <maven.findbugsplugin.version>3.0.3</maven.findbugsplugin.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.plugin.version>3.5.1</maven.compiler.plugin.version>
+        <maven.surefire.plugin.version>2.20.1</maven.surefire.plugin.version>
+        <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
+        <maven.jacoco.plugin.version>0.7.8</maven.jacoco.plugin.version>
+        <maven.dependency.plugin.version>3.0.2</maven.dependency.plugin.version>
+        <maven.processor.plugin.version>2.2.4</maven.processor.plugin.version>
+        <maven.remote.resource.plugin.version>1.5</maven.remote.resource.plugin.version>
+        <maven.wagon.ssh.version>2.2</maven.wagon.ssh.version>
         <maven.release.plugin.version>2.5.3</maven.release.plugin.version>
         <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
-        <maven.docker.plugin.version>0.22.1</maven.docker.plugin.version>
-        <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
-        <maven.jacoco.plugin.version>0.8.4</maven.jacoco.plugin.version>
-        <maven.findbugsplugin.version>3.0.5</maven.findbugsplugin.version>
         <maven.properties.plugin.version>1.0.0</maven.properties.plugin.version>
-        <maven.remote.resources.plugin.version>1.6.0</maven.remote.resources.plugin.version>
+        <maven.remote.resources.plugin.version>1.5</maven.remote.resources.plugin.version>
         <maven.exec.plugin.version>1.6.0</maven.exec.plugin.version>
-        <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
-        <maven.shade.plugin.version>3.2.1</maven.shade.plugin.version>
+        <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
+        <maven.shade.plugin.version>3.1.1</maven.shade.plugin.version>
     </properties>
-
-    <modules>
-        <module>component</module>
-    </modules>
 </project>
