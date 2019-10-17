@@ -7,3 +7,13 @@ repository= "https://github.com/ldclakmal/ballerina-extension-quickstart"
 license = ["Apache-2.0"]
 
 [dependencies]
+
+[platform]
+target = "java8"
+
+    [[platform.libraries]]
+    module = "sample"
+    path = "./sample/target/sample-module-1.0.0.jar"
+    artifactId = "sample"
+    version = "0.1.1"
+    groupId = "lk.avix"
