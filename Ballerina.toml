@@ -1,6 +1,6 @@
 [project]
 org-name = "ldclakmal"
-version = "1.0.0"
+version = "1.0.2"
 authors = ["Chanaka Lakmal"]
 keywords= ["sample", "extension", "quickstart"]
 repository= "https://github.com/ldclakmal/ballerina-extension-quickstart"
@@ -15,5 +15,5 @@ target = "java8"
     module = "sample"
     path = "./sample/target/sample-module-1.0.0.jar"
     artifactId = "sample"
-    version = "0.1.1"
+    version = "1.0.0"
     groupId = "lk.avix"

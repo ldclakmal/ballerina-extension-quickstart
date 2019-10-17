@@ -2,7 +2,9 @@
 
 # Module Overview
 
-This is a external function module for Ballerina, which you can use as a sample to build your own ballerina `extern` functions.
+This is a external function module for Ballerina, which you can use as a sample to build your own ballerina `external` functions.
+
+**Template:** [https://github.com/ldclakmal/ballerina-extension-quickstart](https://github.com/ldclakmal/ballerina-extension-quickstart)
 
 ## Compatibility
 
