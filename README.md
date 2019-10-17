@@ -1,30 +1,36 @@
-[![Build Status](https://api.travis-ci.com/ldclakmal/sample-ballerina-extension.svg?branch=master)](https://travis-ci.com/ldclakmal/sample-ballerina-extension)
+[![Build Status](https://api.travis-ci.com/ldclakmal/ballerina-extension-quickstart.svg?branch=master)](https://travis-ci.com/ldclakmal/ballerina-extension-quickstart)
 
-# Ballerina Extension
+# Module Overview
 
 This is a external function module for Ballerina, which you can use as a sample to build your own ballerina `extern` functions.
 
-## Steps to Configure
+## Compatibility
 
-Extract `ballerina-extension-<version>.zip` and  Run the `install.sh` script to install the module.
-You can uninstall the module by running `uninstall.sh`.
+|                      |           Version           |
+|:--------------------:|:---------------------------:|
+| Ballerina Language   |            1.0.1            |
 
-## Building From the Source
+## Getting Started
 
-If you want to build Ballerina Extension module from the source code:
+### Prerequisites
 
-1. Get a clone or download the source from this repository: https://github.com/ldclakmal/nsample-ballerina-extension.git
-2. Run the following Maven command from the ballerina directory: `mvn clean install`
-3. Extract the distribution created at `/component/target/ballerina-extension-<version>.zip`. Run the `install.{sh/bat}` script to install the module. You can uninstall the module by running `uninstall.{sh/bat}`.
+Download and install [Ballerina](https://ballerina.io/downloads/).
+
+### Pull the Module
+
+You can pull the SAMPLE module from Ballerina Central using the command:
+```ballerina
+$ ballerina pull ldclakmal/sample
+```
 
 ## Sample
 
 ```ballerina
 import ballerina/io;
-import wso2/extension;
+import ldclakmal/sample;
 
 public function main() {
-    int max = extension:max(2, 3);
+    int max = sample:max(2, 3);
     io:println(max);
 }
 ```
