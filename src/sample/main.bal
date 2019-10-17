@@ -1,7 +1,6 @@
-import ballerina/io;
+import ballerinax/java;
 
-# Prints `Hello World`.
-
-public function main() {
-    io:println("Hello World!");
-}
+public function max(int a, int b) returns int = @java:Method{
+    name: "max",
+    class: "lk.avix.sample.Max"
+} external;

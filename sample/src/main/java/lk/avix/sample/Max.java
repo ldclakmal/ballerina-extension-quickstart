@@ -5,4 +5,7 @@ package lk.avix.sample;
  */
 public class Max {
 
+    public static int max(int a, int b) {
+        return Math.max(a, b);
+    }
 }

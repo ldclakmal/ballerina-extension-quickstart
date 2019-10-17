@@ -22,7 +22,8 @@ function beforeFunc() {
 }
 function testFunction() {
     io:println("I'm in test function!");
-    test:assertTrue(true, msg = "Failed!");
+    int maxNo = max(2, 3);
+    test:assertEquals(maxNo, 3, msg = "Failed!");
 }
 
 # After test function
