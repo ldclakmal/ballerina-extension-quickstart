@@ -4,7 +4,7 @@ Ballerina extension quickstart template.
 
 This is a external function module for Ballerina, which you can use as a sample to build your own ballerina `external` functions.
 
-**Template:** (https://github.com/ldclakmal/ballerina-extension-quickstart)[https://github.com/ldclakmal/ballerina-extension-quickstart]
+**Template:** [https://github.com/ldclakmal/ballerina-extension-quickstart](https://github.com/ldclakmal/ballerina-extension-quickstart)
 
 ## Compatibility
 
@@ -21,7 +21,7 @@ Download and install [Ballerina](https://ballerina.io/downloads/).
 ### Pull the Module
 
 You can pull the SAMPLE module from Ballerina Central using the command:
-```ballerina
+```shell script
 $ ballerina pull ldclakmal/sample
 ```
 
