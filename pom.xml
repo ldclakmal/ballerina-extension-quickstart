@@ -334,7 +334,7 @@
         <maven.surefire.plugin.version>2.22.2</maven.surefire.plugin.version>
         <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
         <maven.jacoco.plugin.version>0.7.8</maven.jacoco.plugin.version>
-        <maven.dependency.plugin.version>3.0.2</maven.dependency.plugin.version>
+        <maven.dependency.plugin.version>3.1.1</maven.dependency.plugin.version>
         <maven.processor.plugin.version>3.3.3</maven.processor.plugin.version>
         <maven.remote.resource.plugin.version>1.5</maven.remote.resource.plugin.version>
         <maven.wagon.ssh.version>2.2</maven.wagon.ssh.version>
