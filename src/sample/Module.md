@@ -10,7 +10,7 @@ This is a external function module for Ballerina, which you can use as a sample 
 
 |                      |           Version           |
 |:--------------------:|:---------------------------:|
-| Ballerina Language   |            1.0.1            |
+| Ballerina Language   |            1.1.0            |
 
 ## Getting Started
 

@@ -1,6 +1,6 @@
 [project]
 org-name = "ldclakmal"
-version = "1.0.3"
+version = "1.0.4"
 authors = ["Chanaka Lakmal"]
 keywords= ["sample", "extension", "quickstart"]
 repository= "https://github.com/ldclakmal/ballerina-extension-quickstart"
