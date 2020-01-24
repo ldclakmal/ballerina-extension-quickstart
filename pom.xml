@@ -324,7 +324,7 @@
         <ballerina.version>1.1.0</ballerina.version>
         <slf4j.version>1.7.28</slf4j.version>
         <maven.findbugsplugin.version.exclude>findbugs-exclude.xml</maven.findbugsplugin.version.exclude>
-        <testng.version>6.9.4</testng.version>
+        <testng.version>7.1.0</testng.version>
 
         <wso2.maven.compiler.source>1.8</wso2.maven.compiler.source>
         <wso2.maven.compiler.target>1.8</wso2.maven.compiler.target>
