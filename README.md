@@ -10,7 +10,7 @@ This is a external function module for Ballerina, which you can use as a sample 
 
 |                      |           Version           |
 |:--------------------:|:---------------------------:|
-| Ballerina Language   |            1.1.1            |
+| Ballerina Language   |            1.2.0            |
 
 ## Getting Started
 
@@ -21,6 +21,7 @@ Download and install [Ballerina](https://ballerina.io/downloads/).
 ### Pull the Module
 
 You can pull the SAMPLE module from Ballerina Central using the command:
+
 ```shell script
 $ ballerina pull ldclakmal/sample
 ```
