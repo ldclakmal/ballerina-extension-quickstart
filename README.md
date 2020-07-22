@@ -2,15 +2,15 @@
 
 # Module Overview
 
-This is a external function module for Ballerina, which you can use as a sample to build your own ballerina `external` functions.
+This is an external function module for Ballerina, which you can use as a sample to build your own ballerina `external` functions.
 
 **Template:** [https://github.com/ldclakmal/ballerina-extension-quickstart](https://github.com/ldclakmal/ballerina-extension-quickstart)
 
 ## Compatibility
 
-|                      |           Version           |
-|:--------------------:|:---------------------------:|
-| Ballerina Language   |            1.2.0            |
+|                      |               Version             |
+|:--------------------:|:---------------------------------:|
+| Ballerina Language   | 1.1.x, 1.2.x, Swan Lake Preview x |
 
 ## Getting Started
 
