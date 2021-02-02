@@ -321,7 +321,7 @@
         </snapshotRepository>
     </distributionManagement>
     <properties>
-        <ballerina.version>2.0.0-Preview8</ballerina.version>
+        <ballerina.version>2.0.0-Preview8.1</ballerina.version>
         <slf4j.version>1.7.30</slf4j.version>
         <maven.findbugsplugin.version.exclude>findbugs-exclude.xml</maven.findbugsplugin.version.exclude>
         <testng.version>7.3.0</testng.version>
