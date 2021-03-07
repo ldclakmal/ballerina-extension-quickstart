@@ -1,3 +1,1 @@
-module lk.avix.sample {
-    requires io.ballerina.runtime;
-}
+module lk.avix.sample {}

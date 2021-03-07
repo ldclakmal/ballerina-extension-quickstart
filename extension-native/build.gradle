@@ -9,8 +9,6 @@ description = 'Ballerina Extension Quickstart - Java Native Implementation'
 dependencies {
     checkstyle project(':build-config:checkstyle')
     checkstyle "com.puppycrawl.tools:checkstyle:${puppycrawlCheckstyleVersion}"
-
-    compile group: 'org.ballerinalang', name: 'ballerina-runtime', version: "${ballerinaLangVersion}"
 }
 
 checkstyle {

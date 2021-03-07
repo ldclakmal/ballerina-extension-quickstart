@@ -1,4 +1,4 @@
-package lk.avix.sample;
+package lk.avix.nativeimpl;
 
 /**
  * Extern functions of extension.

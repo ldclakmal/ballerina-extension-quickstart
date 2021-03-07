@@ -6,8 +6,8 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 description = 'Ballerina Extension Quickstart'
 
-def packageName = "extension"
 def packageOrg = "ldclakmal"
+def packageName = "extension"
 def tomlVersion = project.version.replace("-SNAPSHOT", "")
 def ballerinaConfigFile = new File("$project.projectDir/Ballerina.toml")
 def artifactBallerinaDocs = file("$project.projectDir/build/docs_parent/")
@@ -15,17 +15,12 @@ def artifactCacheParent = file("$project.projectDir/build/cache_parent/")
 def artifactLibParent = file("$project.projectDir/build/lib_parent/")
 def ballerinaCentralAccessToken = System.getenv('BALLERINA_CENTRAL_ACCESS_TOKEN')
 def originalConfig = ballerinaConfigFile.text
-def distributionBinPath = project.projectDir.absolutePath + "/build/target/extracted-distributions/" +
-        "jballerina-tools-zip/jballerina-tools-${ballerinaLangVersion}/bin"
 
 configurations {
     jbalTools
 }
 
 dependencies {
-    jbalTools("org.ballerinalang:jballerina-tools:${ballerinaLangVersion}") {
-        transitive = false
-    }
     compile project(":${packageName}-native")
 }
 
@@ -108,11 +103,11 @@ task ballerinaTest {
             workingDir project.projectDir
             environment "JAVA_OPTS", "-DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true"
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                commandLine 'cmd', '/c', "$balJavaDebugParam $distributionBinPath/bal.bat test " +
+                commandLine 'cmd', '/c', "$balJavaDebugParam bal.bat test " +
                         "--code-coverage --includes=* ${groupParams} ${disableGroups} ${debugParams} && " +
                         "exit %%ERRORLEVEL%%"
             } else {
-                commandLine 'sh', '-c', "$balJavaDebugParam $distributionBinPath/bal test " +
+                commandLine 'sh', '-c', "$balJavaDebugParam bal test " +
                         "--code-coverage --includes=* ${groupParams} ${disableGroups} ${debugParams}"
             }
         }
@@ -128,10 +123,10 @@ task ballerinaBuild {
             workingDir project.projectDir
             environment "JAVA_OPTS", "-DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true"
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                commandLine 'cmd', '/c', "$balJavaDebugParam $distributionBinPath/bal.bat build " +
+                commandLine 'cmd', '/c', "$balJavaDebugParam bal.bat build " +
                         "${testParams} ${debugParams} && exit %%ERRORLEVEL%%"
             } else {
-                commandLine 'sh', '-c', "$balJavaDebugParam $distributionBinPath/bal build ${testParams} ${debugParams}"
+                commandLine 'sh', '-c', "$balJavaDebugParam bal build ${testParams} ${debugParams}"
             }
         }
         copy {
@@ -150,9 +145,9 @@ task ballerinaBuild {
             workingDir project.projectDir
             environment "JAVA_OPTS", "-DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true"
             if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                commandLine 'cmd', '/c', "$distributionBinPath/bal.bat doc && exit %%ERRORLEVEL%%"
+                commandLine 'cmd', '/c', "bal.bat doc && exit %%ERRORLEVEL%%"
             } else {
-                commandLine 'sh', '-c', "$distributionBinPath/bal doc"
+                commandLine 'sh', '-c', "bal doc"
             }
         }
         copy {
@@ -177,9 +172,9 @@ task ballerinaPublish {
                 workingDir project.projectDir
                 environment "JAVA_OPTS", "-DBALLERINA_DEV_COMPILE_BALLERINA_ORG=true"
                 if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                    commandLine 'cmd', '/c', "$distributionBinPath/bal.bat push && exit %%ERRORLEVEL%%"
+                    commandLine 'cmd', '/c', "bal.bat push && exit %%ERRORLEVEL%%"
                 } else {
-                    commandLine 'sh', '-c', "$distributionBinPath/bal push"
+                    commandLine 'sh', '-c', "bal push"
                 }
             }
         } else {
