@@ -1,0 +1,13 @@
+[package]
+org = "ldclakmal"
+name = "extension"
+version = "@toml.version@"
+authors = ["Chanaka Lakmal"]
+repository = "https://github.com/ldclakmal/ballerina-extension-quickstart"
+license = ["Apache-2.0"]
+
+[[platform.java11.dependency]]
+path = "../extension-native/build/libs/extension-native-@project.version@.jar"
+groupId = "ballerina"
+artifactId = "extension"
+version = "@project.version@"

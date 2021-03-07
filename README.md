@@ -1,39 +1,34 @@
-[![Build Status](https://api.travis-ci.com/ldclakmal/ballerina-extension-quickstart.svg?branch=master)](https://travis-ci.com/ldclakmal/ballerina-extension-quickstart)
+# Ballerina Extension Quickstart
 
-# Module Overview
+[![Build](https://github.com/ldclakmal/ballerina-extension-quickstart/actions/workflows/master.yml/badge.svg)](https://github.com/ldclakmal/ballerina-extension-quickstart/actions/workflows/master.yml)
 
-This is an external function module for Ballerina, which you can use as a sample to build your own ballerina `external` functions.
+This is a sample Ballerina extension for demonstration purpose, which you can use as a sample to build your own ballerina `external` functions.
 
 **Template:** [https://github.com/ldclakmal/ballerina-extension-quickstart](https://github.com/ldclakmal/ballerina-extension-quickstart)
 
 ## Compatibility
 
-|                      |               Version             |
-|:--------------------:|:---------------------------------:|
-| Ballerina Language   | 1.1.x, 1.2.x, Swan Lake Preview x |
+|                            | **Version**       |
+|----------------------------|-------------------|
+| Ballerina Language         | Swan Lake Alpha 2 |
+| Java Development Kit (JDK) | 11                |
 
-## Getting Started
+## Getting started
 
-### Prerequisites
+1. Refer to the [Quick Tour](https://ballerina.io/learn/getting-started/quick-tour/) guide to download and install Ballerina.
+2. Clone the [ballerina-connector-quickstart](https://github.com/ldclakmal/ballerina-connector-quickstart) GitHub repository.
+3. Move inside to `ballerina-extension-quickstart` directory and execute `$ ./gradlew build`. It should compile the source, run the tests and generates the executables.
 
-Download and install [Ballerina](https://ballerina.io/downloads/).
+## Samples
 
-### Pull the Module
-
-You can pull the SAMPLE module from Ballerina Central using the command:
-
-```shell script
-$ ballerina pull ldclakmal/sample
-```
-
-## Sample
+Import the `ldclakmal/extension` module into your Ballerina project and check the usage of sample `max` function.
 
 ```ballerina
 import ballerina/io;
-import ldclakmal/sample;
+import ldclakmal/extension;
 
 public function main() {
-    int max = sample:max(2, 3);
-    io:println(max);
+    int maxNo = extension:max(2, 10);
+    io:println(maxNo);
 }
 ```
