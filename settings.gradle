@@ -11,7 +11,7 @@ plugins {
     id "com.gradle.enterprise" version "3.2"
 }
 
-rootProject.name = 'extension'
+rootProject.name = 'ballerina-extension-quickstart'
 include(':build-config:checkstyle')
 include ':extension-native', ':extension-ballerina'
 
