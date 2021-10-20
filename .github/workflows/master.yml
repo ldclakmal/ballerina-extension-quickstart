@@ -9,15 +9,23 @@ jobs:
   build:
     name: Build Extension
     runs-on: ubuntu-latest
-    env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
     steps:
-      - uses: actions/checkout@v2
-      - name: Ballerina Build
-        uses: ballerina-platform/ballerina-action/@master
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download & Install Ballerina
+        env:
+          BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+        run: |
+            wget https://dist.ballerina.io/downloads/$BALLERINA_VERSION/ballerina-linux-installer-x64-$BALLERINA_VERSION.deb
+            sudo dpkg -i ballerina-linux-installer-x64-$BALLERINA_VERSION.deb
+            sudo apt-get install -f
+            bal -v
       - name: Build with Gradle
         env:
-          packageUser: ${{ secrets.BALLERINA_BOT_USERNAME }}
-          packagePAT: ${{ secrets.BALLERINA_BOT_TOKEN }}
-        run: |
-          ./gradlew build
+          packageUser: ${{ secrets.BOT_USERNAME }}
+          packagePAT: ${{ secrets.BOT_TOKEN }}
+        run: ./gradlew build
