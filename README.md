@@ -10,7 +10,7 @@ This is a sample Ballerina extension for demonstration purpose, which you can us
 
 |                            | **Version**       |
 |----------------------------|-------------------|
-| Ballerina Language         | Swan Lake Beta 1  |
+| Ballerina Language         | Swan Lake Beta 3  |
 | Java Development Kit (JDK) | 11                |
 
 ## Getting started
